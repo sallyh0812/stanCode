@@ -23,16 +23,15 @@ def main():
 
 
 def check_repeat(s):
-    now = ""
+    now = False
     repeat = 0
     for i in range(1, len(s)):
         if s[i - 1] == s[i]:
-            if s[i] != now:
+            if not now:
                 repeat += 1
-                now = s[i]
-        
+                now = True
         else:
-            now = ""
+            now = False
     return repeat
 
 

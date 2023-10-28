@@ -10,15 +10,17 @@ ALPHA = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
 
 def main():
+    unused = ALPHA
     with open(FILENAME, 'r') as f:
-        unused = ALPHA
         for line in f:
             unused = check_use(line, unused)
-        for i in range(len(unused)):
-            if i == len(unused) - 1:
-                print(unused[i], end="")
-            else:
+        # All are used
+        if len(unused) == 0:
+            print("All alphabets are used")
+        else:
+            for i in range(len(unused) - 1):
                 print(unused[i], end=", ")
+            print(unused[-1])
 
 
 def check_use(s, now_unused):

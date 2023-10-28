@@ -1,5 +1,5 @@
 """
-File: file_reading1.py
+File:file_reading1.py
 ——————————————————————————————————
 This program reads a file, parking.txt, and calculates the number of vehicles in the
 parking lot. The license plate numbers are as follows:
@@ -21,6 +21,15 @@ def main():
                 moto += 1
             else:
                 unknown += 1
+            # if line[-2] == "*":
+            #     car += 1
+            # elif len(line) == 8:  # including "\n"
+            #     unknown += 1
+            # else:
+            #     if count_alpha(line) == 2:
+            #         car += 1
+            #     else:
+            #         moto += 1
     print(f"Car: {car}\nMoto: {moto}\nUnknown: {unknown}")
 
 
@@ -40,7 +49,7 @@ def is_car(s):
         return True
     
     # elif s.find("*") != -1:
-    elif s[len(s) - 2] == "*":  # because each line contains "\n" at the end
+    elif s[-2] == "*":  # because each line contains "\n" at the end
         return True
     else:
         return False
