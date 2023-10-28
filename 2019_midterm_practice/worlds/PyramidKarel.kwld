@@ -1,0 +1,5 @@
+8-1-east-inf
+streets 11
+
+eastwestwalls 8 1 10
+northsouthwalls 10 1 8

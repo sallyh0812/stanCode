@@ -1,5 +1,5 @@
 """
-File:file_reading1.py
+File:prime_checker.py
 ——————————————————————————————————
 This program reads a file, parking.txt, and calculates the number of vehicles in the
 parking lot. The license plate numbers are as follows:

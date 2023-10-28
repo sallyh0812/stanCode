@@ -1,5 +1,5 @@
 """
-File: file_reading2.py
+File: file_reading_substr.py
 ——————————————————————————————————
 This program reads a file, parking.txt, and prints the alphabets that are unused. If
 the license plate numbers in the parking lot include all the alphabets, you should

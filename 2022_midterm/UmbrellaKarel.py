@@ -1,7 +1,7 @@
 from karel.stanfordkarel import *
 
 """
-File: UmbrellaKarel.py
+File: PyramidKarel.py
 ————————————————————————————
 Karel uses beepers to construct an umbrella in its world. Karel will start from the
 midpoint of street1 and back to the origin after its construction. The world may be
