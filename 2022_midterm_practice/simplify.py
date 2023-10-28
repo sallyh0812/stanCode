@@ -10,17 +10,20 @@ If "quit" is entered, "Have a good one!" will be printed and terminate the progr
 
 def main():
     print("Welcome to stanCode String Cleaning Program!")
-    s = input("Please enter a string: ")
-    while s != "quit":
+    while True:
+        s = input("Please enter a string: ")
+        if s == "quit":
+            break
         ans = remove_duplicates(s)
         print("Cleaned: " + ans)
-        s = input("Please enter a string: ")
     print("Have a good one!")
 
 
 def remove_duplicates(s):
-    cleaned = ""
-    cleaned += s[0]
+    # avoid len = 0
+    if len(s) < 2:
+        return s
+    cleaned = s[0]
     for i in range(1, len(s)):
         if s[i] != s[i - 1]:
             cleaned += s[i]

@@ -10,19 +10,12 @@ the height of the world is a random number bigger than or equal to 1.
 
 
 def main():
-    # Your Code Here
     move()
-    while front_is_clear():
-        for i in range(4):
-            if on_beeper():
-                move_to_b()
-                put_beeper()
-                move_to_a()
-            move()
-        move_back()
-        if front_is_clear():
-            move()
-            turn_right()
+    while left_is_clear():
+        copy_street()
+        back_to_avenue2()
+        go_to_next_street()
+    copy_street()
 
 
 def turn_right():
@@ -35,22 +28,36 @@ def turn_around():
     turn_left()
 
 
-def move_to_a():
-    turn_around()
-    for i in range(5):
-        move()
-    turn_around()
-
-
-def move_to_b():
-    for i in range(5):
-        move()
-
-
-def move_back():
-    turn_around()
+def move_4():
     for i in range(4):
         move()
+
+
+def move_5():
+    for i in range(5):
+        move()
+
+
+def back_to_avenue2():
+    turn_around()
+    move_4()
+    turn_around()
+
+
+def copy_street():
+    for i in range(4):
+        if on_beeper():
+            move_5()
+            put_beeper()
+            turn_around()
+            move_5()
+            turn_around()
+        move()
+
+
+def go_to_next_street():
+    turn_left()
+    move()
     turn_right()
 
 

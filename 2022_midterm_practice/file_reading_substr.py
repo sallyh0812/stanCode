@@ -22,12 +22,11 @@ def my_substr(line):
     """
     start = int(line[0]) + 2
     end = int(line[1]) + 2
-    ans = ''
-    if start > end or end > (len(line) - 1):
-        ans = "Illegal format"
+    # There is a "\n" at the end
+    if start >= end or end > (len(line) - 1):
+        return "Illegal format"
     else:
-        ans = line[start:end]
-    return ans
+        return line[start:end]
 
 
 if __name__ == '__main__':

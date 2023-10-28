@@ -12,7 +12,7 @@ def secret(s):
 
 
 def main():
-    a = secret('s11tan22Code4')
+    a = secret('s11tan22Code')
     b = secret('1234a210')
     print(a)
     print(b)
