@@ -12,18 +12,30 @@ If the user entered ’N’, ”Have a good one!” is printed on Console
 
 def main():
     # Your Code Here
-    pass
+    while True:
+        run = input("Run? ")
+        if run == "N":
+            break
+        elif run == "Y":
+            n = int(input("n: "))
+            if is_prime(n):
+                print(f"{n} is a prime number.")
+            else:
+                print(f"{n} is not a prime number.")
+        else:
+            print("Illegal format.")
+    print("Have a good one!")
 
 
 def is_prime(n):
-    pass
+    prime = True
+    for i in range(2, n):
+        if n % i == 0:
+            prime = False
+            break
+    
+    return prime
 
 
-"""
-input:
-    n (int): an integer that is greater than 1
-return type:
-    bool: True if n is a prime number ; False if n is not a prime number
-"""
-
-# Your Code Here
+if __name__ == '__main__':
+    main()
