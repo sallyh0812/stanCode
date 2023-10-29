@@ -28,13 +28,11 @@ def main():
 
 
 def is_prime(n):
-    prime = True
-    for i in range(2, n):
-        if n % i == 0:
-            prime = False
-            break
-    
-    return prime
+    for i in range(2, n+1):
+        if n == i:
+            return True
+        elif n % i == 0:
+            return False
 
 
 if __name__ == '__main__':
