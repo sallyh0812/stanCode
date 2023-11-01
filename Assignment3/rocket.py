@@ -79,7 +79,7 @@ def lower():
             print("\\", end="/")
         for n in range(i):
             print(".", end="")
-    print("|")
+        print("|")
 
 
 def main():

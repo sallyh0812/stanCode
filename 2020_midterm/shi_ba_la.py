@@ -27,7 +27,6 @@ def rolls():
 
 
 def repeat_num(s):
-    max_repeat = 1
     for i in range(len(s)):
         repeat = 0
         for j in range(len(s)):
