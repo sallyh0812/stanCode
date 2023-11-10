@@ -12,15 +12,23 @@ from simpleimage import SimpleImage
 
 def reflect(filepath):
     """
-    :param filepath:
-    :return:
+    :param filepath: str, the filepath of the img that is to be mirrored
+    :return reflected: SimpleImage, an img composed of original and vertical mirrored picture
     """
+    # read the original img
     img = SimpleImage(filepath)
+    
+    # create a blank pic with twice the height of original img
     reflected = SimpleImage.blank(img.width, img.height * 2)
+    
     for x in range(img.width):
         for y in range(img.height):
             o_pixel = img.get_pixel(x, y)
+            
+            # original picture pixel in new img
             r1_pixel = reflected.get_pixel(x, y)
+            
+            # mirrored picture pixel in new img
             r2_pixel = reflected.get_pixel(x, reflected.height - 1 - y)
             
             r1_pixel.red = o_pixel.red
@@ -36,7 +44,7 @@ def reflect(filepath):
 
 def main():
     """
-    TODO:
+    show the original picture and the mirrored(vertically) picture
     """
     original_mt = SimpleImage('images/mt-rainier.jpg')
     original_mt.show()

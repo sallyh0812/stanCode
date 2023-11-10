@@ -15,17 +15,18 @@ HURDLE_FACTOR = 1.05
 
 def highlight_fires(filepath):
     """
-    :param filepath:
-    :return: img, fire highlighted, others parts grayed
+    :param filepath: str, the filepath of the img processed
+    :return img: SimpleImage, fire highlighted, others parts grayed
     """
     img = SimpleImage(filepath)
     for pixel in img:
         avg = (pixel.red + pixel.green + pixel.blue) // 3
-        if pixel.red > avg:
+        if pixel.red > avg * HURDLE_FACTOR:  # if it's fire part
             pixel.red = 255
             pixel.blue = 0
             pixel.green = 0
         else:
+            # gray other parts
             pixel.red = avg
             pixel.blue = avg
             pixel.green = avg
@@ -34,7 +35,7 @@ def highlight_fires(filepath):
 
 def main():
     """
-    TODO:
+    Show the original picture and the processed picture with fire highlighted, others parts grayed
     """
     original_fire = SimpleImage('images/greenland-fire.png')
     original_fire.show()

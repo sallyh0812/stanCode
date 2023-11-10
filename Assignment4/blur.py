@@ -12,8 +12,8 @@ from simpleimage import SimpleImage
 
 def blur(img):
     """
-    :param img:
-    :return:
+    :param img: SimpleImg, the original img
+    :return new_img: SimpleImg, the blurred img
     """
     new_img = SimpleImage.blank(img.width, img.height)
     for x in range(img.width):
@@ -40,16 +40,13 @@ def blur(img):
 
 def main():
     """
-    TODO:
+    Show the original img and the blurred img
     """
     old_img = SimpleImage("images/smiley-face.png")
     old_img.show()
     
     blurred_img = blur(old_img)
-    for i in range(5):
-        blurred_img = blur(blurred_img)
-    blurred_img.show()
-    for i in range(10):
+    for i in range(5):  # blur the img 5 times
         blurred_img = blur(blurred_img)
     blurred_img.show()
 

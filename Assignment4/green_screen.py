@@ -12,9 +12,9 @@ from simpleimage import SimpleImage
 
 def combine(background_img, figure_img):
     """
-    :param background_img:
-    :param figure_img: a figure with green screen to be removed
-    :return: figure_img, after replace green pixels with background_img
+    :param background_img: SimpleImage, img that is to replace the green screen
+    :param figure_img: SimpleImage, a picture with green screen to be removed
+    :return figure_img: SimpleImage, after replacing green pixels with background_img
     """
     for x in range(figure_img.width):
         for y in range(figure_img.height):
@@ -30,7 +30,8 @@ def combine(background_img, figure_img):
 
 def main():
     """
-    TODO:
+    Read background img and figure img(with green screen),
+    then show the figure img after processing green screen
     """
     space_ship = SimpleImage("images/MillenniumFalcon.png")
     figure = SimpleImage("images/ReyGreenScreen.png")
