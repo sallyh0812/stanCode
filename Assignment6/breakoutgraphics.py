@@ -50,32 +50,38 @@ class BreakoutGraphics:
         
         # Draw bricks
         current_y = brick_offset
-        brick_color = 'red'
+        self.brick_color = 'red'
         for i in range(brick_cols):
             current_x = 0
             for j in range(brick_rows):
                 self.brick = GRect(brick_width, brick_height)
                 self.brick.filled = True
-                self.brick.fill_color = brick_color
+                self.brick.fill_color = self.brick_color
                 self.window.add(self.brick, x=current_x, y=current_y)
                 current_x += self.brick.width + brick_spacing
             current_y += self.brick.height + brick_spacing
             if i % 2 == 1:
-                brick_color = change_color(brick_color)
+                self.change_brick_color()
         
         # Initialize our mouse listeners
-        onmouseclicked()
-        onmousemoved()
-        
-# Change brick color
-def change_color(current_color):
-    if current_color == 'red':
-        return 'orange'
-    elif current_color == 'orange':
-        return 'yellow'
-    elif current_color == 'yellow':
-        return 'green'
-    elif current_color == 'green':
-        return 'blue'
-    elif current_color == 'blue':
-        return 'red'
+        onmouseclicked(self.a)
+        onmousemoved(self.b)
+        ###
+    
+    def change_brick_color(self):
+        if self.brick_color == 'red':
+            self.brick_color = 'orange'
+        elif self.brick_color == 'orange':
+            self.brick_color = 'yellow'
+        elif self.brick_color == 'yellow':
+            self.brick_color = 'green'
+        elif self.brick_color == 'green':
+            self.brick_color = 'blue'
+        elif self.brick_color == 'blue':
+            self.brick_color = 'red'
+    
+    def a(self, event):
+        pass
+    
+    def b(self, event):
+        pass
