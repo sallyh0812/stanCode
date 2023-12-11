@@ -14,8 +14,8 @@ import random
 BRICK_SPACING = 5  # Space between bricks (in pixels). This space is used for horizontal and vertical spacing
 BRICK_WIDTH = 40  # Width of a brick (in pixels)
 BRICK_HEIGHT = 15  # Height of a brick (in pixels)
-BRICK_ROWS = 10  # Number of rows of bricks
-BRICK_COLS = 10  # Number of columns of bricks
+BRICK_ROWS = 7  # Number of rows of bricks
+BRICK_COLS = 5  # Number of columns of bricks
 BRICK_OFFSET = 50  # Vertical offset of the topmost brick from the window top (in pixels)
 BALL_RADIUS = 10  # Radius of the ball (in pixels)
 PADDLE_WIDTH = 75  # Width of the paddle (in pixels)
@@ -47,13 +47,15 @@ class BreakoutGraphics:
                         y=(self.window.height - self.ball.height) / 2)
         
         # Default initial velocity for the ball
+        self.ball.__dx = 0
+        self.ball.__dy = 0
         
         # Draw bricks
         current_y = brick_offset
         self.brick_color = 'red'
-        for i in range(brick_cols):
+        for i in range(brick_rows):
             current_x = 0
-            for j in range(brick_rows):
+            for j in range(brick_cols):
                 self.brick = GRect(brick_width, brick_height)
                 self.brick.filled = True
                 self.brick.fill_color = self.brick_color
@@ -64,9 +66,11 @@ class BreakoutGraphics:
                 self.change_brick_color()
         
         # Initialize our mouse listeners
-        onmouseclicked(self.a)
-        onmousemoved(self.b)
-        ###
+        onmouseclicked(self.set_ball_speed)
+        onmousemoved(self.move_paddle)
+        
+        ##
+        self.brick_amount = brick_cols * brick_rows
     
     def change_brick_color(self):
         if self.brick_color == 'red':
@@ -80,8 +84,67 @@ class BreakoutGraphics:
         elif self.brick_color == 'blue':
             self.brick_color = 'red'
     
-    def a(self, event):
-        pass
+    def move_paddle(self, mouse):
+        if mouse.x + self.paddle.width / 2 > self.window.width:
+            self.paddle.x = self.window.width - self.paddle.width
+        elif mouse.x - self.paddle.width / 2 < 0:
+            self.paddle.x = 0
+        else:
+            self.paddle.x = mouse.x - self.paddle.width / 2
     
-    def b(self, event):
-        pass
+    def set_ball_speed(self, event):
+        if self.ball.__dx == 0 and self.ball.__dy == 0:
+            self.ball.__dx = random.randint(1, MAX_X_SPEED)
+            self.ball.__dy = INITIAL_Y_SPEED
+            if random.random() > 0.5:
+                self.ball.__dx = -self.ball.__dx
+    
+    def get_ball_speed_x(self):
+        return self.ball.__dx
+    
+    def get_ball_speed_y(self):
+        return self.ball.__dy
+    
+    def check_collision(self):
+        x = self.ball.x
+        y = self.ball.y
+        r = self.ball.width / 2
+        check1 = self.window.get_object_at(x, y)
+        check2 = self.window.get_object_at(x + r * 2, y)
+        check3 = self.window.get_object_at(x, y + r * 2)
+        check4 = self.window.get_object_at(x + r * 2, y + r * 2)
+        if check1 is not None:
+            if check1 is not self.paddle:
+                self.window.remove(check1)
+                self.brick_amount -= 1
+            self.ball.__dy *= -1
+        elif check2 is not None:
+            if check2 is not self.paddle:
+                self.window.remove(check2)
+                self.brick_amount -= 1
+            self.ball.__dy *= -1
+        elif check3 is not None:
+            if check3 is not self.paddle:
+                self.window.remove(check3)
+                self.brick_amount -= 1
+            self.ball.__dy *= -1
+        elif check4 is not None:
+            if check4 is not self.paddle:
+                self.window.remove(check4)
+                self.brick_amount -= 1
+            self.ball.__dy *= -1
+        
+        if self.ball.y > self.window.height:
+            self.reset_ball()
+            return "drop out"
+        
+        if self.ball.x + self.ball.width >= self.window.width or self.ball.x <= 0:
+            self.ball.__dx *= -1
+        if self.ball.y <= 0:
+            self.ball.__dy *= -1
+    
+    def reset_ball(self):
+        self.ball.x = (self.window.width - self.ball.width) / 2
+        self.ball.y = (self.window.height - self.ball.height) / 2
+        self.ball.__dx = 0
+        self.ball.__dy = 0
