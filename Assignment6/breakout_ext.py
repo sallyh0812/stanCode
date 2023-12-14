@@ -17,9 +17,11 @@ NUM_LIVES = 5  # Number of attempts
 def main():
     game = BreakoutGraphicsExt()
     life = NUM_LIVES
-    
+    #
+    game.window.add(game.rule)
+    pause(3000)
+    game.window.remove(game.rule)
     # the animation loop, stop when life == 0 or brick_amount == 0
-    game.add_tools()
     while life and game.get_brick_amount():
         game.ball.move(game.get_ball_speed_x(), game.get_ball_speed_y())
         

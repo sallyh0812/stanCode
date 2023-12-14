@@ -62,10 +62,14 @@ class BreakoutGraphicsExt:
         self.hit_paddle = 0
         self.is_tool = False
         
+        #
+        self.rule = GImage("breakout_ext_rule.png")
+        
         # Create a graphical window, with some extra space
         window_width = brick_cols * (brick_width + brick_spacing) - brick_spacing
         window_height = brick_offset + 4 * (brick_rows * (brick_height + brick_spacing) - brick_spacing) + paddle_offset
         self.window = GWindow(width=window_width, height=window_height, title=title)
+        
         # Default score board
         self.score = 0
         self.score_board = GLabel(f"Score: {self.score}")
@@ -156,6 +160,7 @@ class BreakoutGraphicsExt:
         # Initialize our mouse listeners
         onmouseclicked(self.start_game)
         onmousemoved(self.move_paddle)
+        
     
     def rand_xy_without_obj(self, min_x, max_x, min_y, max_y):
         rand_x = random.randint(min_x, max_x)
@@ -281,7 +286,7 @@ class BreakoutGraphicsExt:
         old_paddle_x = self.paddle.x
         old_paddle_width = self.paddle.width
         self.window.remove(self.paddle)
-        self.paddle = GRect(old_paddle_width*0.9, paddle_height)
+        self.paddle = GRect(old_paddle_width*0.8, paddle_height)
         self.paddle.filled = True
         self.window.add(self.paddle, x=old_paddle_x,
                         y=self.window.height - paddle_offset - self.status_board_height)
