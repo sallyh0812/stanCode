@@ -8,19 +8,22 @@ Name: Sally 111613025
 """
 
 from campy.gui.events.timer import pause
-from breakoutgraphics_ext import BreakoutGraphics_ext
+from breakoutgraphics_ext import BreakoutGraphicsExt
 
 FRAME_RATE = 10  # 100 frames per second
-NUM_LIVES = 3  # Number of attempts
+NUM_LIVES = 5  # Number of attempts
 
 
 def main():
-    game = BreakoutGraphics_ext()
+    game = BreakoutGraphicsExt()
     life = NUM_LIVES
     
     # the animation loop, stop when life == 0 or brick_amount == 0
+    game.add_tools()
     while life and game.get_brick_amount():
         game.ball.move(game.get_ball_speed_x(), game.get_ball_speed_y())
+        
+        game.add_tools()
         
         # check and change speed for all the collision between the ball, the bricks, the paddle, and the wall
         game.check_game_ball1()
@@ -33,10 +36,22 @@ def main():
         if game.is_long_paddle:
             if not game.long_paddle_time:
                 game.reset_paddle_width()
+        if game.is_free_paddle:
+            if not game.free_paddle_time:
+                game.unfree_paddle()
+                
+        if game.is_short_paddle:
+            if not game.short_paddle_time:
+                game.reset_paddle_width()
         
         if game.check_drop_out1():  # if the ball drops out the window
             life -= 1
         pause(FRAME_RATE)
+        
+    if not life:
+        game.fail()
+    else:
+        game.success()
     
     # reset ball after the end of the game
     game.reset_ball()
