@@ -19,7 +19,7 @@ def main():
     life = NUM_LIVES
     #
     game.window.add(game.rule)
-    pause(3000)
+    pause(5000)
     game.window.remove(game.rule)
     # the animation loop, stop when life == 0 or brick_amount == 0
     while life and game.get_brick_amount():
