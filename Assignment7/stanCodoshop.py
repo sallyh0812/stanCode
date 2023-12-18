@@ -22,9 +22,9 @@ def get_pixel_dist(pixel, red, green, blue):
         blue (int): the average blue value of the pixels to be compared
 
     Returns:
-        dist (float): the "color distance" of a pixel to the average RGB value of the pixels to be compared.
+        color_distance (float): the "color distance" of a pixel to the average RGB value of the pixels to be compared.
     """
-    color_distance = ((red - pixel.red)**2+(green - pixel.green)**2 +(blue-pixel.blue)**2)**0.5
+    color_distance = ((red - pixel.red) ** 2 + (green - pixel.green) ** 2 + (blue - pixel.blue) ** 2) ** 0.5
     return color_distance
 
 
@@ -36,19 +36,19 @@ def get_average(pixels):
         pixels (List[Pixel]): a list of pixels to be averaged
 
     Returns:
-        rgb (List[int]): a list of average red, green, and blue values of the pixels
+        avg (List[int]): a list of average red, green, and blue values of the pixels
                         (returns in order: [red, green, blue])
     """
-    sum = [0,0,0]
+    pixel_sum = [0, 0, 0]  # list for sum of r,g,b
     avg = []
     count = 0
     for pixel in pixels:
-        sum[0] += pixel.red
-        sum[1]+= pixel.green
-        sum[2]+=pixel.blue
-        count +=1
+        pixel_sum[0] += pixel.red
+        pixel_sum[1] += pixel.green
+        pixel_sum[2] += pixel.blue
+        count += 1
     for i in range(3):
-        avg.append(sum[i] // count)  # use // because value of RGB should be int
+        avg.append(pixel_sum[i] // count)  # use // because value of RGB should be int
     return avg
 
 
@@ -61,7 +61,16 @@ def get_best_pixel(pixels):
     Returns:
         best (Pixel): the pixel which has the closest color to the average
     """
-    pass
+    pixels_avg = get_average(pixels)  # a list [avg_r, avg_g, avg_b]
+    avg_r, avg_g, avg_b = pixels_avg[0], pixels_avg[1], pixels_avg[2]
+    min_dist = get_pixel_dist(pixels[0], avg_r, avg_g, avg_b)
+    best = pixels[0]
+    for pixel in pixels:
+        pixel_dist = get_pixel_dist(pixel, avg_r, avg_g, avg_b)
+        if pixel_dist < min_dist:
+            best = pixel
+            min_dist = pixel_dist
+    return best
 
 
 def solve(images):
@@ -79,17 +88,20 @@ def solve(images):
     
     # ----- YOUR CODE STARTS HERE ----- #
     # Write code to populate image and create the 'ghost' effect
-    print('-' * 8 + 'Milestone1' + '-' * 8)
-    green_im = SimpleImage.blank(20,20,'green')
-    green_pixel = green_im.get_pixel(0,0)
-    print(get_pixel_dist(green_pixel,5,255,10))
-    print('-'*8+'Milestone2'+'-'*8)
-    red_pixel = SimpleImage.blank(20,20,'red').get_pixel(0,0)
-    blue_pixel = SimpleImage.blank(20, 20, 'blue').get_pixel(0, 0)
-    print(get_average([green_pixel,green_pixel,green_pixel,blue_pixel]))
-
+    
+    for x in range(width):
+        for y in range(height):
+            pixels = []
+            for image in images:
+                pixels.append(image.get_pixel(x, y))
+            best_pixel = get_best_pixel(pixels)
+            result_pixel = result.get_pixel(x, y)
+            result_pixel.red = best_pixel.red
+            result_pixel.blue = best_pixel.blue
+            result_pixel.green = best_pixel.green
+    
     # ----- YOUR CODE ENDS HERE ----- #
-
+    
     print("Displaying image!")
     result.show()
 
