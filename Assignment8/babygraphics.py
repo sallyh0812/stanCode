@@ -96,7 +96,7 @@ def draw_names(canvas, name_data, lookup_names):
             y1 = CANVAS_HEIGHT - GRAPH_MARGIN_SIZE
         else:
             rank = data[year]
-            y1 = GRAPH_MARGIN_SIZE + (CANVAS_HEIGHT - 2 * GRAPH_MARGIN_SIZE) / 1000 * int(rank)
+            y1 = GRAPH_MARGIN_SIZE + (CANVAS_HEIGHT - 2 * GRAPH_MARGIN_SIZE) / MAX_RANK * int(rank)
         
         # add points, draw names and lines
         for i in range(len(YEARS)):
@@ -107,7 +107,7 @@ def draw_names(canvas, name_data, lookup_names):
                 text = f"{name} *"
             else:
                 rank = data[year]  # data = name_data[name]
-                y2 = GRAPH_MARGIN_SIZE + (CANVAS_HEIGHT - 2 * GRAPH_MARGIN_SIZE) / 1000 * int(rank)
+                y2 = GRAPH_MARGIN_SIZE + (CANVAS_HEIGHT - 2 * GRAPH_MARGIN_SIZE) / MAX_RANK * int(rank)
                 text = f"{name} {rank}"
             canvas.create_line(x1, y1, x2, y2, fill=color, width=LINE_WIDTH)
             canvas.create_text(x2 + TEXT_DX, y2, text=text, anchor=tkinter.SW, fill=color)
