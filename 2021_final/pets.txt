@@ -1,0 +1,7 @@
+    Ada     Happy, Loving, Fuzzy, Big, Tricky
+Babbage     Loving, Tiny, Energetic, Quiet
+   Lucy     Happy, Loving, Big
+  Larry     Happy, Fuzzy, Tiny, Tricksy
+   Abby     Loving, Big, Energetic
+   Luba     Happy, Loving, Tiny, Quiet, Tricksy
+  Mitzy     Fuzzy, Big, Energetic, Quiet
