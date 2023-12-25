@@ -10,7 +10,7 @@ MIN_SPEED = 2.0
 MAX_SPEED = 4.0
 
 
-class DodgerGraphics():
+class DodgerGraphics:
     def __init__(self, window_width=WINDOW_WIDTH,
                  window_height=WINDOW_HEIGHT):
         """
@@ -26,8 +26,8 @@ class DodgerGraphics():
         self.vy = 0
         self.ball = GOval(window_height / 2, window_height / 2)
         self.ball.filled = True
-        y = random.randint(0,1)*window_height/2
-        self.w.add(self.ball,x=0, y =y)
+        y = random.randint(0, 1) * window_height / 2
+        self.w.add(self.ball, x=0, y=y)
         # Create and place a filled square in the window
         # (part a)
         self.sq = GRect(window_height / 2, window_height / 2 - 1)
@@ -45,7 +45,7 @@ class DodgerGraphics():
         if event.y < self.w.height / 2:
             self.sq.y = 0
         elif event.y > self.w.height / 2:
-            self.sq.y = self.w.height/2+1
+            self.sq.y = self.w.height / 2 + 1
     
     def reset_ball(self):
         """
@@ -55,7 +55,7 @@ class DodgerGraphics():
         """
         # Your Code Here
         self.ball.x = 0
-        self.ball.y = random.randint(0,1)*self.w.height/2
+        self.ball.y = random.randint(0, 1) * self.w.height / 2
         self.vx = random.randint(MIN_SPEED, MAX_SPEED)
         self.vy = 0
 
@@ -75,7 +75,7 @@ def main():
             g.reset_ball()
         g.ball.move(g.vx, 0)
         pause(FRAME_RATE)
-        
+
 
 if __name__ == '__main__':
     main()

@@ -10,7 +10,7 @@ MIN_SPEED = 2.0
 MAX_SPEED = 4.0
 
 
-class DodgerGraphics():
+class DodgerGraphics:
     def __init__(self, window_width=WINDOW_WIDTH,
                  window_height=WINDOW_HEIGHT):
         """
