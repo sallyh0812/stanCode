@@ -18,9 +18,9 @@ class DodgerGraphics():
          class should keep track of the GWindow, the offset, the ball, and the
          square.
          """
-        # TODO: Create a window with the correct width and height
+        # Create a window with the correct width and height
         self.w = GWindow(width=window_width, height=window_height)
-        # TODO: Create and place a filled ball in the graphical window
+        # Create and place a filled ball in the graphical window
         # (part a)
         self.vx = random.randint(MIN_SPEED, MAX_SPEED)
         self.ball = GOval(window_height / 2, window_height / 2)
@@ -29,12 +29,12 @@ class DodgerGraphics():
             self.w.add(self.ball, 0, 0)
         else:
             self.w.add(self.ball, 0, window_height / 2)
-        # TODO: Create and place a filled square in the window
+        # Create and place a filled square in the window
         # (part a)
         self.sq = GRect(window_height / 2, window_height / 2 - 1)
         self.sq.filled = True
         self.w.add(self.sq, self.w.width - self.sq.width, 0)
-        # TODO: Initialize mouse listeners (part b)
+        # Initialize mouse listeners (part b)
         onmouseclicked(self.move_square)
     
     def move_square(self, event):

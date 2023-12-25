@@ -10,12 +10,12 @@ def find_pets_dict(filename):
         for line in f:
             data = line.split()  # ‘\n’ and extra spaces are removed
             pet_name = data[0].strip()
-            adj_list = data[1].split(', ')
-            # adj_list = []
-            # for adj in data[1:]:
-            #     if ',' in adj:
-            #         adj = adj[:-1]
-            #     adj_list.append(adj)
+            # adj_list = data[1].split(', ')
+            adj_list = []
+            for adj in data[1:]:
+                if ',' in adj:
+                    adj = adj[:-1]
+                adj_list.append(adj)
             d[pet_name] = adj_list
     return d
 

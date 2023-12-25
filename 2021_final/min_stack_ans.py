@@ -1,6 +1,7 @@
 class MinStack:
     def __init__(self):
         self.__data = []
+        self.__min = []
     
     def push(self, x):
         """
@@ -10,6 +11,11 @@ class MinStack:
         :return: None
         """
         self.__data.append(x)
+        if len(self.__min) != 0:
+            if x <= self.__min[-1]:
+                self.__min.append(x)
+        else:
+            self.__min.append(x)
     
     def pop(self):
         """
@@ -17,7 +23,9 @@ class MinStack:
         ——————————————————————
         :return: None
         """
-        self.__data = self.__data[:-1]
+        ele = self.__data.pop()
+        if ele == self.__min[-1]:
+            self.__min.pop()
     
     def top(self):
         """
@@ -33,7 +41,7 @@ class MinStack:
         ——————————————————————
         :return: int, the minimum element
         """
-        return min(self.__data)
+        return self.__min[-1]
 
 
 def main():
