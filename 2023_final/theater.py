@@ -2,16 +2,22 @@ class Theater:
     def __init__(self, seats: int) -> None:
         self.seats = []
         for i in range(seats):
-            self.seats.append(1)
+            # self.seats.append(1)
+            self.seats.append(i + 1)
     
-    def reserve(self) -> int:
-        for i in range(len(self.seats)):
-            if self.seats[i]:
-                self.seats[i] = 0
-                return i + 1
+    # def reserve(self) -> int:
+    #     for i in range(len(self.seats)):
+    #         if self.seats[i]:
+    #             self.seats[i] = 0
+    #             return i + 1
+    
+    def reserve(self):
+        return self.seats.pop(0)
     
     def unreserve(self, seat_number) -> None:
-        self.seats[seat_number - 1] = 1
+        # self.seats[seat_number - 1] = 1
+        self.seats.append(seat_number)
+        self.seats = sorted(self.seats)
 
 
 def main():

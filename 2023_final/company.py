@@ -8,6 +8,9 @@ def floor_distribution() -> dict:
             if line != '\n':
                 floor, room, company = line.split()
                 floor, room = int(floor), int(room)
+                # floor = int(line[0])
+                # room = int(line[1])
+                # company = line[2].strip()
                 if floor in d:
                     if company in d[floor]:
                         d[floor][company].append(room)

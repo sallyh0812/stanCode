@@ -1,17 +1,13 @@
 def narcissistic_checker(number: int) -> bool:
-    sum = 0
-    ans = number
-    n = []
-    while number:
-        n.append(number % 10)
-        number = number // 10
-    # print(n)
-    for i in range(len(n)):
-        sum += n[i] ** len(n)
-    if sum == ans:
+    power = 0
+    while number // 10 ** power != 0:
+        power += 1
+    checker = 0
+    for i in range(power):
+        checker += (number // (10 ** i) % 10) ** power
+    if checker == number:
         return True
-    else:
-        return False
+    return False
 
 
 def main():
