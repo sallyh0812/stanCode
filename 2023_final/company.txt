@@ -1,0 +1,13 @@
+16  13  stanCode
+11  13  Apple
+9   8   Google
+16  11  stanCode
+
+15  16  Microsoft
+9   14  Gogoro
+10  10  Google
+
+5   9   Netflix
+11  14  stanCode
+16  15  Apple
+10  1   Google
